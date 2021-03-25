@@ -37,7 +37,6 @@ async function getListingData(listing) {
             data["propertyName"] = propertyName || null;
         } catch (e) {
             console.log(`Error getting propertyName: ${e} `);
-            return;
         }
 
         try {
@@ -49,7 +48,6 @@ async function getListingData(listing) {
             data["propertyType"] = propertyType || null;
         } catch (e) {
             console.log(`Error getting propertyType: ${e} `);
-            return;
         }
 
         try {
@@ -61,7 +59,6 @@ async function getListingData(listing) {
             data["numberOfBathrooms"] = numberOfBathrooms || null;
         } catch (e) {
             console.log(`Error getting numberOfBathrooms: ${e} `);
-            return;
         }
 
         try {
