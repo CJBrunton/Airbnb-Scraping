@@ -21,7 +21,7 @@ Steps to run the script and verify the output:
 
 -   Add some tests around the script to improve on the timeout and try/catch error handling.
 
--   More robust error handling around puppeteer
+-   More robust error handling around puppeteer.
 
 -   As an output in a full project you could send the scraped data to an api endpoint to insert to a database.
 
