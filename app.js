@@ -1,11 +1,34 @@
 const puppeteer = require("puppeteer");
+const fs = require("fs");
 const baseUrl = "https://www.airbnb.co.uk/rooms/";
 const listings = ["33571268", "33090114", "40558945"];
 
 async function app() {
+    console.log("Starting scrape");
+
+    let scrapedListings = [];
+
     for await (listing of listings) {
         const data = await getListingData(listing);
-        console.log({ data });
+        data["id"] = listing;
+        console.log(data);
+        scrapedListings.push(data);
+    }
+
+    console.log("Scrape complete, will now write to file");
+
+    try {
+        fs.writeFile(
+            "scrapedListings.json",
+            JSON.stringify(scrapedListings),
+            "utf8",
+            function (err) {
+                if (err) throw err;
+                console.log("File complete");
+            }
+        );
+    } catch (err) {
+        console.log(`Error writing to file ${err}`);
     }
 }
 
@@ -18,7 +41,7 @@ async function waitForSelectors(page) {
         });
         await page.waitForSelector("._7ts20mk", { timeout: 3000 });
     } catch (e) {
-        console.log(e + "Error occurred waiting on selectors");
+        console.log(`Error occurred waiting on selectors: ${e}`);
     }
 }
 
@@ -33,21 +56,21 @@ async function getListingData(listing) {
         let data = {};
 
         try {
-            let propertyName = document.querySelector("._mbmcsn").innerText;
-            data["propertyName"] = propertyName || null;
+            let listingName = document.querySelector("._mbmcsn").innerText;
+            data["listingName"] = listingName || null;
         } catch (e) {
-            console.log(`Error getting propertyName: ${e} `);
+            console.log(`Error getting listingName: ${e}`);
         }
 
         try {
             let typeQuery = document.querySelector("._xcsyj0").innerText;
-            let propertyType = typeQuery
+            let listingType = typeQuery
                 .substr(0, typeQuery.indexOf("hosted"))
                 .trim();
 
-            data["propertyType"] = propertyType || null;
+            data["listingType"] = listingType || null;
         } catch (e) {
-            console.log(`Error getting propertyType: ${e} `);
+            console.log(`Error getting listingType: ${e}`);
         }
 
         try {
@@ -58,7 +81,7 @@ async function getListingData(listing) {
             );
             data["numberOfBathrooms"] = numberOfBathrooms || null;
         } catch (e) {
-            console.log(`Error getting numberOfBathrooms: ${e} `);
+            console.log(`Error getting numberOfBathrooms: ${e}`);
         }
 
         try {
