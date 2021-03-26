@@ -1,6 +1,6 @@
 # TravelNest-Exercise
 
-A script written in JS and using puppeteer that will scrape Airbnb listings to return name, type,number of bedrooms and number of bathrooms.
+A script written in JS using puppeteer that will scrape Airbnb listings to return name, type,number of bedrooms and number of bathrooms.
 
 Steps to run the script and verify the output:
 
@@ -13,14 +13,16 @@ Steps to run the script and verify the output:
 
 -   Further research into the best optimisation of scraping with JS.
 
--   Optimisation of using puppeteer, the current wait for selectors seems like it would take up a lot of time and I feel there must be another way to do this.
+-   Optimisation of using puppeteer, the current wait for selectors seems like it would take up a lot of time and I feel there must be a better way to do this.
 
--   Improve the DOM manipulation to be more robust and reliable when pulling the information.
+-   Improve the DOM manipulation that has been used on the current data to be more robust and reliable when pulling the information.
 
 -   Retrieve the list of amenities that have been asked for, this has currently been left due to the time constraint of a few hours. I could pull all amenities but not idetify which were unavailable, I made the decision that not listing amenties would be better than listing incorrect/unavailable ones at this time.
 
 -   Add some tests around the script to improve on the timeout and try/catch error handling.
 
+-   More robust error handling around puppeteer
+
 -   As an output in a full project you could send the scraped data to an api endpoint to insert to a db.
 
--   Add linting and editor config to the file, prettier has been used locally.
+-   Add linting and editor config to the file for others (I would use companies best practice), prettier has been used locally.
