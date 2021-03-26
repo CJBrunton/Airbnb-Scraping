@@ -25,6 +25,6 @@ Steps to run the script and verify the output:
 
 -   As an output in a full project you could send the scraped data to an api endpoint to insert to a database.
 
--   Add validation to the data returned.
+-   Add validation for the data built and returned.
 
 -   Add linting and editor config to the file for others (I would use the company's best practice), prettier has been used locally.
